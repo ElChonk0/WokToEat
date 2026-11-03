@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What can I cook? | WokToEat</title>
+<meta name="description" content="Pick the ingredients you have and see the closest recipes for each cuisine.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css?v=27c02129d0">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head"><div class="wrap">
+<a class="brand" href="index.html">WokToEat<small>1055 recipes &middot; 20 cuisines</small></a>
+<nav class="site-nav" aria-label="Main"><a href="browse.html">Browse</a><a href="cuisines.html">Cuisines</a><a href="planner.html">Meal planner</a><a href="pantry.html" aria-current="page">Pantry</a><a href="shop.html">Shopping list</a><a href="guides/index.html">Guides</a></nav>
+<form class="head-search" action="browse.html" role="search"><input type="search" name="q" placeholder="Search recipes" aria-label="Search recipes" autocomplete="off"></form>
+</div></header>
+<main id="main"><div class="wrap">
+<header class="page-head"><h1>What can I cook?</h1><p>Tick what you have. Each cuisine shows the three recipes closest to what is in your kitchen, with anything missing listed. Water, salt, oil, sugar and pepper are assumed.</p></header>
+<div id="pantry-root" class="pantry-grid">
+<div class="controls">
+<fieldset><legend>You have</legend><div id="mine" class="mine"></div></fieldset>
+<fieldset><legend>Add ingredients</legend>
+<label class="field" for="pq">Search<input type="search" id="pq" placeholder="e.g. chicken, tofu, lime" autocomplete="off"></label>
+<div id="picker"></div></fieldset>
+<details class="pcat"><summary>Always on hand</summary><div class="chips" id="staples"></div><p class="hint">Untick anything you are out of.</p></details>
+<fieldset><legend>Options</legend>
+<label class="check" for="veg"><input type="checkbox" id="veg"> Vegetarian only</label>
+<label class="field" for="maxMiss">Allow up to
+<select id="maxMiss"><option value="0">0 missing (can make now)</option><option value="1">1 missing</option><option value="2">2 missing</option><option value="3">3 missing</option><option value="5">5 missing</option><option value="99">any number</option></select></label>
+</fieldset>
+<p class="hint"><a id="shopLink" href="shop.html">Shopping list</a>. Matching is by ingredient name, so check amounts and substitutions on the recipe.</p>
+</div>
+<div id="results" aria-live="polite"></div>
+</div>
+<noscript><p>The pantry finder needs JavaScript.</p></noscript>
+</div></main>
+<footer class="site-foot"><div class="wrap">
+<p>Nutrition figures are per-serving estimates, not lab values. Side rice and noodles are excluded unless the dish contains them. See <a href="guides/index.html">the guides</a> for how they were calculated.</p>
+<p>Recipes live as plain Markdown files, one per dish, and this site is generated from them.</p>
+</div></footer>
+<script>window.ROOT="";</script>
+<script src="data/index.js?v=27c02129d0"></script>
+<script src="data/ing.js?v=27c02129d0"></script>
+<script src="assets/lib.js?v=27c02129d0"></script>
+<script src="assets/pantry.js?v=27c02129d0"></script>
+</body>
+</html>

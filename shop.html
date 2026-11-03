@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shopping list | WokToEat</title>
+<meta name="description" content="Add up the ingredients for the recipes you picked.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css?v=27c02129d0">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head"><div class="wrap">
+<a class="brand" href="index.html">WokToEat<small>1055 recipes &middot; 20 cuisines</small></a>
+<nav class="site-nav" aria-label="Main"><a href="browse.html">Browse</a><a href="cuisines.html">Cuisines</a><a href="planner.html">Meal planner</a><a href="pantry.html">Pantry</a><a href="shop.html" aria-current="page">Shopping list</a><a href="guides/index.html">Guides</a></nav>
+<form class="head-search" action="browse.html" role="search"><input type="search" name="q" placeholder="Search recipes" aria-label="Search recipes" autocomplete="off"></form>
+</div></header>
+<main id="main"><div class="wrap">
+<header class="page-head"><h1>Shopping list</h1><p>Everything you need for the recipes you picked, added up and grouped by aisle. Things you marked as on hand on the <a href="pantry.html">pantry page</a> are moved out of the way.</p></header>
+<div id="shop-root">
+<div class="tools no-print" id="shop-actions" hidden>
+<button type="button" class="btn small" data-unit="metric" aria-pressed="false">Metric</button><button type="button" class="btn small" data-unit="imperial" aria-pressed="false">US</button>
+<button type="button" class="btn small" id="copyShop">Copy as text</button>
+<a class="btn small" id="mailShop" href="mailto:">Email it</a><a class="btn small" id="smsShop" href="sms:">Text it</a>
+<button type="button" class="btn small" id="printShop">Print</button><button type="button" class="btn small" id="clearShop">Clear list</button>
+</div>
+<div id="shop-body"></div>
+</div>
+<noscript><p>The shopping list needs JavaScript.</p></noscript>
+</div></main>
+<footer class="site-foot"><div class="wrap">
+<p>Nutrition figures are per-serving estimates, not lab values. Side rice and noodles are excluded unless the dish contains them. See <a href="guides/index.html">the guides</a> for how they were calculated.</p>
+<p>Recipes live as plain Markdown files, one per dish, and this site is generated from them.</p>
+</div></footer>
+<script>window.ROOT="";</script>
+<script src="data/index.js?v=27c02129d0"></script>
+<script src="data/ing.js?v=27c02129d0"></script>
+<script src="assets/lib.js?v=27c02129d0"></script>
+<script src="assets/shop.js?v=27c02129d0"></script>
+</body>
+</html>

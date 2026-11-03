@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meal planner | WokToEat</title>
+<meta name="description" content="Build a week of meals around your macro targets.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css?v=27c02129d0">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head"><div class="wrap">
+<a class="brand" href="index.html">WokToEat<small>1055 recipes &middot; 20 cuisines</small></a>
+<nav class="site-nav" aria-label="Main"><a href="browse.html">Browse</a><a href="cuisines.html">Cuisines</a><a href="planner.html" aria-current="page">Meal planner</a><a href="pantry.html">Pantry</a><a href="shop.html">Shopping list</a><a href="guides/index.html">Guides</a></nav>
+<form class="head-search" action="browse.html" role="search"><input type="search" name="q" placeholder="Search recipes" aria-label="Search recipes" autocomplete="off"></form>
+</div></header>
+<main id="main"><div class="wrap">
+<header class="page-head"><h1>Meal planner</h1><p>Builds up to seven days of breakfasts, lunches and dinners from the proteins and cuisines you pick, scaling portions (and adding rice) to land near your daily targets. Lock a meal you like, then rebuild the rest.</p></header>
+<div class="planner-grid">
+<form class="controls" id="controls" novalidate autocomplete="off">
+<fieldset><legend>Main ingredients</legend><div class="chips" id="proteinChips"></div><p class="hint">Meals rotate evenly across the ones you choose.</p></fieldset>
+<fieldset><legend>Cuisines (optional)</legend><div class="chips" id="cuisineChips"></div><p class="hint">None picked means any cuisine.</p></fieldset>
+<fieldset><legend>Days</legend><div class="segr" id="daysSeg"></div></fieldset>
+<fieldset><legend>Meals</legend><div class="chips" id="mealChips"></div></fieldset>
+<fieldset><legend>Daily targets</legend>
+<div class="presets" id="presets"></div>
+<div class="row two">
+<label class="field" for="tK">kcal<input type="number" id="tK" min="800" max="5000" step="1"></label>
+<label class="field" for="tP">Protein g<input type="number" id="tP" min="20" max="400" step="1"></label>
+<label class="field" for="tC">Carbs g<input type="number" id="tC" min="20" max="600" step="1"></label>
+<label class="field" for="tF">Fat g<input type="number" id="tF" min="10" max="250" step="1"></label>
+</div>
+<p class="kcal-check" id="kcalCheck"></p>
+</fieldset>
+<fieldset><legend>Share of the day</legend>
+<div class="row three">
+<label class="field" for="sB">Breakfast %<input type="number" id="sB" min="0" max="100" step="1"></label>
+<label class="field" for="sL">Lunch %<input type="number" id="sL" min="0" max="100" step="1"></label>
+<label class="field" for="sD">Dinner %<input type="number" id="sD" min="0" max="100" step="1"></label>
+</div>
+<p class="hint">Shares are rescaled to the meals you turn on.</p>
+</fieldset>
+<label class="check" for="rice"><input type="checkbox" id="rice"> Add steamed rice to close a carb gap</label>
+<div class="actions"><button type="submit" class="btn primary">Build plan</button><button type="button" class="btn" id="unlockAll">Unlock all</button></div>
+<p class="hint">Build plan keeps locked meals and redraws the rest.</p>
+</form>
+<div class="plan-results" id="results" aria-live="polite"></div>
+</div>
+<noscript><p>The planner needs JavaScript.</p></noscript>
+</div></main>
+<footer class="site-foot"><div class="wrap">
+<p>Nutrition figures are per-serving estimates, not lab values. Side rice and noodles are excluded unless the dish contains them. See <a href="guides/index.html">the guides</a> for how they were calculated.</p>
+<p>Recipes live as plain Markdown files, one per dish, and this site is generated from them.</p>
+</div></footer>
+<script>window.ROOT="";</script>
+<script src="data/plan.js?v=27c02129d0"></script>
+<script src="assets/planner.js?v=27c02129d0"></script>
+</body>
+</html>

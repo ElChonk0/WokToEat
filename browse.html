@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Browse recipes | WokToEat</title>
+<meta name="description" content="Search and filter all recipes.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css?v=27c02129d0">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head"><div class="wrap">
+<a class="brand" href="index.html">WokToEat<small>1055 recipes &middot; 20 cuisines</small></a>
+<nav class="site-nav" aria-label="Main"><a href="browse.html" aria-current="page">Browse</a><a href="cuisines.html">Cuisines</a><a href="planner.html">Meal planner</a><a href="pantry.html">Pantry</a><a href="shop.html">Shopping list</a><a href="guides/index.html">Guides</a></nav>
+<form class="head-search" action="browse.html" role="search"><input type="search" name="q" placeholder="Search recipes" aria-label="Search recipes" autocomplete="off"></form>
+</div></header>
+<main id="main"><div class="wrap">
+<header class="page-head"><h1>Browse recipes</h1><p>Search by dish, ingredient or cuisine, then narrow by main ingredient, meal, difficulty or time.</p></header>
+<div class="browse" id="browse-root">
+<div>
+<button type="button" class="btn filter-toggle" id="filterToggle" aria-expanded="false" aria-controls="filters" style="margin-bottom:10px">Filters</button>
+<form class="filters" id="filters" role="search" autocomplete="off">
+<fieldset><legend>Search</legend><input type="search" id="q" name="q" placeholder="e.g. mushroom, noodle, braised" aria-label="Search recipes"></fieldset>
+<fieldset><legend>Main ingredient</legend><div class="chips"><label class="chip"><input type="checkbox" name="p" value="chicken"><span>Chicken</span></label><label class="chip"><input type="checkbox" name="p" value="duck"><span>Duck</span></label><label class="chip"><input type="checkbox" name="p" value="pork"><span>Pork</span></label><label class="chip"><input type="checkbox" name="p" value="beef"><span>Beef</span></label><label class="chip"><input type="checkbox" name="p" value="seafood"><span>Seafood</span></label><label class="chip"><input type="checkbox" name="p" value="tofu"><span>Tofu &amp; Vegetarian</span></label></div></fieldset>
+<fieldset><legend>Cuisine</legend><div class="group-h" style="margin:8px 0 4px">China</div><div class="chips"><label class="chip"><input type="checkbox" name="c" value="Cantonese"><span>Cantonese</span></label><label class="chip"><input type="checkbox" name="c" value="Sichuan"><span>Sichuan</span></label><label class="chip"><input type="checkbox" name="c" value="Hunan"><span>Hunan</span></label><label class="chip"><input type="checkbox" name="c" value="Shanghainese / Jiangnan"><span>Shanghainese / Jiangnan</span></label><label class="chip"><input type="checkbox" name="c" value="Beijing"><span>Beijing</span></label><label class="chip"><input type="checkbox" name="c" value="Shandong"><span>Shandong</span></label><label class="chip"><input type="checkbox" name="c" value="Fujian"><span>Fujian</span></label><label class="chip"><input type="checkbox" name="c" value="Hakka"><span>Hakka</span></label><label class="chip"><input type="checkbox" name="c" value="Anhui"><span>Anhui</span></label><label class="chip"><input type="checkbox" name="c" value="Yunnan"><span>Yunnan</span></label><label class="chip"><input type="checkbox" name="c" value="Xinjiang"><span>Xinjiang</span></label></div><div class="group-h" style="margin:8px 0 4px">East Asia</div><div class="chips"><label class="chip"><input type="checkbox" name="c" value="Taiwan"><span>Taiwan</span></label><label class="chip"><input type="checkbox" name="c" value="Japan"><span>Japan</span></label><label class="chip"><input type="checkbox" name="c" value="Korea"><span>Korea</span></label></div><div class="group-h" style="margin:8px 0 4px">Southeast Asia</div><div class="chips"><label class="chip"><input type="checkbox" name="c" value="Thailand"><span>Thailand</span></label><label class="chip"><input type="checkbox" name="c" value="Vietnam"><span>Vietnam</span></label><label class="chip"><input type="checkbox" name="c" value="Indonesia"><span>Indonesia</span></label><label class="chip"><input type="checkbox" name="c" value="Malaysia / Singapore"><span>Malaysia / Singapore</span></label><label class="chip"><input type="checkbox" name="c" value="Philippines"><span>Philippines</span></label></div><div class="group-h" style="margin:8px 0 4px">South Asia</div><div class="chips"><label class="chip"><input type="checkbox" name="c" value="India"><span>India</span></label></div></fieldset>
+<fieldset><legend>Meal</legend><div class="chips"><label class="chip"><input type="checkbox" name="m" value="b"><span>Breakfast</span></label><label class="chip"><input type="checkbox" name="m" value="l"><span>Lunch</span></label><label class="chip"><input type="checkbox" name="m" value="d"><span>Dinner</span></label></div></fieldset>
+<fieldset><legend>Difficulty</legend><div class="chips"><label class="chip"><input type="checkbox" name="d" value="E"><span>Easy</span></label><label class="chip"><input type="checkbox" name="d" value="M"><span>Medium</span></label><label class="chip"><input type="checkbox" name="d" value="H"><span>Hard</span></label></div></fieldset>
+<fieldset><legend>Dish type</legend><div class="chips"><label class="chip"><input type="checkbox" name="g" value="stir-fry"><span>Stir-fry</span></label><label class="chip"><input type="checkbox" name="g" value="braise"><span>Braise / stew</span></label><label class="chip"><input type="checkbox" name="g" value="soup"><span>Soup</span></label><label class="chip"><input type="checkbox" name="g" value="noodles"><span>Noodles</span></label><label class="chip"><input type="checkbox" name="g" value="rice"><span>Rice</span></label><label class="chip"><input type="checkbox" name="g" value="dumplings"><span>Dumplings &amp; buns</span></label><label class="chip"><input type="checkbox" name="g" value="grilled"><span>Grilled / roasted</span></label><label class="chip"><input type="checkbox" name="g" value="fried"><span>Deep-fried</span></label><label class="chip"><input type="checkbox" name="g" value="steamed"><span>Steamed</span></label><label class="chip"><input type="checkbox" name="g" value="curry"><span>Curry</span></label><label class="chip"><input type="checkbox" name="g" value="salad"><span>Salad / cold</span></label><label class="chip"><input type="checkbox" name="g" value="bread"><span>Bread &amp; pancakes</span></label></div></fieldset><fieldset><legend>Flavour &amp; diet</legend><div class="chips"><label class="chip"><input type="checkbox" name="g" value="spicy"><span>Spicy</span></label><label class="chip"><input type="checkbox" name="g" value="vegetarian"><span>Vegetarian</span></label><label class="chip"><input type="checkbox" name="g" value="vegan"><span>Vegan</span></label></div></fieldset><fieldset><legend>Time</legend><div class="chips"><label class="chip"><input type="checkbox" name="g" value="quick"><span>30 min or less</span></label><label class="chip"><input type="checkbox" name="g" value="slow"><span>Slow (2 hr+ cooking)</span></label></div></fieldset><fieldset><legend>Avoid recipes containing</legend><div class="chips"><label class="chip"><input type="checkbox" name="x" value="nuts"><span>Peanuts / nuts</span></label><label class="chip"><input type="checkbox" name="x" value="shellfish"><span>Shellfish</span></label><label class="chip"><input type="checkbox" name="x" value="egg"><span>Egg</span></label><label class="chip"><input type="checkbox" name="x" value="dairy"><span>Dairy</span></label></div><p class="hint" style="font-size:.8rem;margin:6px 0 0">Based on ingredient names, not a guarantee. Check labels if you have an allergy.</p></fieldset><fieldset><legend>Status</legend><div class="chips"><label class="chip"><input type="checkbox" name="st" value="draft"><span>Draft</span></label><label class="chip"><input type="checkbox" name="st" value="reviewed"><span>Reviewed</span></label><label class="chip"><input type="checkbox" name="st" value="tested"><span>Tested</span></label></div></fieldset>
+<fieldset><legend>Total time</legend><select id="maxtime" aria-label="Maximum total time"><option value="">Any</option><option value="30">30 min or less</option><option value="45">45 min or less</option><option value="60">1 hour or less</option><option value="120">2 hours or less</option></select></fieldset>
+<button type="button" class="btn" id="clear">Clear filters</button>
+</form>
+</div>
+<section aria-live="polite">
+<div class="results-bar"><span class="count" id="count"></span><label>Sort <select id="sort"><option value="book">Relevance</option><option value="title">Name</option><option value="time">Quickest</option><option value="kcal">Fewest calories</option><option value="protein">Most protein</option></select></label></div>
+<div class="cards" id="cards"></div>
+<noscript><p>The filters need JavaScript. You can still browse by <a href="cuisines.html">cuisine</a> or by <a href="type/chicken.html">main ingredient</a>.</p></noscript>
+</section>
+</div>
+</div></main>
+<footer class="site-foot"><div class="wrap">
+<p>Nutrition figures are per-serving estimates, not lab values. Side rice and noodles are excluded unless the dish contains them. See <a href="guides/index.html">the guides</a> for how they were calculated.</p>
+<p>Recipes live as plain Markdown files, one per dish, and this site is generated from them.</p>
+</div></footer>
+<script>window.ROOT="";</script>
+<script src="data/index.js?v=27c02129d0"></script>
+<script src="assets/site.js?v=27c02129d0"></script>
+</body>
+</html>
