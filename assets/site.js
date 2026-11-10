@@ -51,8 +51,12 @@
         (r.n ? ' <span class="native">' + esc(r.n) + '</span>' : '') + '</span><span class="c-meta">' + meta +
         '</span><span class="c-stats">' + stats + '</span></a>';
     }
+    function fold(s) {                                         // ignore pinyin tones and Vietnamese marks
+      s = String(s).toLowerCase().replace(/đ/g, 'd');
+      return s.normalize ? s.normalize('NFD').replace(/[\u0300-\u036f]/g, '') : s;
+    }
     function run() {
-      var terms = q.value.toLowerCase().split(/\s+/).filter(Boolean);
+      var terms = fold(q.value).split(/\s+/).filter(Boolean);
       var g = checked('g'), x = checked('x'), tg = function (r) { return ' ' + r.g + ' '; }, p = checked('p'), c = checked('c'), m = checked('m'), d = checked('d'), st = checked('st'), maxT = +timeEl.value || 0;
       var list = I.filter(function (r) {
         if (p.length && p.indexOf(r.p) === -1) return false;
@@ -69,7 +73,7 @@
       var s = sortEl.value;
       if (terms.length && s === 'book') {                       // relevance: title hits first
         list = list.map(function (r) {
-          var t = (r.t + ' ' + r.n).toLowerCase(), sc = 0;
+          var t = fold(r.t + ' ' + r.n), sc = 0;
           terms.forEach(function (w) { if (t.indexOf(w) === 0) sc += 3; else if (t.indexOf(w) !== -1) sc += 2; });
           return { r: r, sc: sc };
         }).sort(function (a, b) { return b.sc - a.sc; }).map(function (x) { return x.r; });
