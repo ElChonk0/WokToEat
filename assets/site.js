@@ -7,11 +7,25 @@
   function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) {} return null; }
 
   /* ---------------- random dish ---------------- */
+  // Pages reached through "Surprise me" carry ?surprise, which shows a "Surprise me again" button beside the title.
+  function surprise() {
+    var I = window.INDEX, here = (location.pathname.match(/([^\/]+)\.html$/) || [])[1], r;
+    do { r = I[Math.floor(Math.random() * I.length)]; } while (I.length > 1 && r.id === here);
+    location.href = ROOT + 'recipes/' + r.id + '.html?surprise';
+  }
   var rnd = $('randomDish');
-  if (rnd && window.INDEX) {
-    rnd.addEventListener('click', function () {
-      var r = window.INDEX[Math.floor(Math.random() * window.INDEX.length)];
-      location.href = ROOT + 'recipes/' + r.id + '.html';
+  if (rnd && window.INDEX) rnd.addEventListener('click', surprise);
+  var again = $('surpriseAgain');
+  if (again && /[?&]surprise(&|=|$)/.test(location.search)) {
+    again.hidden = false;
+    again.addEventListener('click', function () {
+      if (window.INDEX) return surprise();
+      again.disabled = true;                          // recipe pages do not load the index until it is needed
+      var s = document.createElement('script');
+      s.src = ROOT + 'data/index.js';
+      s.onload = surprise;
+      s.onerror = function () { again.disabled = false; };
+      document.head.appendChild(s);
     });
   }
 

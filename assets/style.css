@@ -133,6 +133,11 @@ main { padding-bottom: 24px; }
 /* ---------- recipe page ---------- */
 .recipe-head h1 { font-size: clamp(28px, 4.6vw, 42px); margin: 12px 0 8px; color: var(--ochre); }
 .recipe-head .native { display: block; font-size: .62em; margin-top: 2px; white-space: normal; }
+[hidden] { display: none !important; }
+.title-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.title-row h1 { min-width: 0; }
+.title-row .btn { flex: none; margin-top: 18px; }
+@media (max-width: 600px) { .title-row { flex-wrap: wrap; gap: 0 12px; } .title-row .btn { margin: 0 0 10px; } }
 .lede { font-style: italic; color: var(--muted); max-width: 70ch; margin: 0 0 14px; }
 .facts { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 14.5px; margin: 0 0 12px; padding: 0; list-style: none; }
 .facts i { font-style: normal; color: var(--muted); margin-right: 4px; }
@@ -261,6 +266,7 @@ a.tag:hover { border-color: var(--ochre); color: var(--ochre); }
   body { background: #fff; color: #000; font-size: 11pt; }
   a { color: inherit; text-decoration: none; }
   .recipe-head h1 { color: #000; }
+  #surpriseAgain { display: none; }
   .ing, .mac { border-color: #999; }
   .recipe-body { grid-template-columns: 1fr 1.3fr; gap: 24px; }
   .notes { break-inside: avoid; }
