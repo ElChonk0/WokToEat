@@ -283,6 +283,7 @@ a.tag:hover { border-color: var(--ochre); color: var(--ochre); }
 .pcard .miss { color: var(--warn); font-size: 13px; }
 .pcard .ok { color: var(--good); font-size: 13px; font-weight: 600; }
 .pcard .btn { justify-self: start; margin-top: 4px; }
+.pc .more { margin-top: 10px; }
 .empty { color: var(--muted); padding: 18px; border: 1px dashed var(--line); border-radius: var(--radius); }
 .shop-recipes { list-style: none; padding: 0; margin: 0 0 8px; display: grid; gap: 6px; }
 .shop-recipes li { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; }

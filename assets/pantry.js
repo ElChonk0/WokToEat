@@ -86,6 +86,7 @@
     return { need: need, miss: miss };
   }
 
+  var open = {};                                   // cuisines the user expanded past the top 3
   function run() {
     var n = Object.keys(have).length;
     if (!n) {
@@ -105,7 +106,7 @@
     });
     var cuisines = Object.keys(byC).map(function (c) {
       byC[c].sort(function (a, b) { return a.s.miss.length - b.s.miss.length || b.cover - a.cover || a.r.tm - b.r.tm || (a.r.t < b.r.t ? -1 : 1); });
-      return { c: c, list: byC[c].slice(0, 3), total: byC[c].length };
+      return { c: c, list: open[c] ? byC[c] : byC[c].slice(0, 3), total: byC[c].length };
     });
     cuisines.sort(function (a, b) {
       return a.list[0].s.miss.length - b.list[0].s.miss.length || b.list[0].cover - a.list[0].cover || (a.c < b.c ? -1 : 1);
@@ -114,7 +115,7 @@
       results.innerHTML = '<p class="empty">No recipe is within ' + opt.max + ' missing ingredient' + (opt.max === 1 ? '' : 's') + ' of what you picked. Try allowing more missing ingredients.</p>';
       return;
     }
-    var ready = cuisines.reduce(function (t, c) { return t + c.list.filter(function (x) { return !x.s.miss.length; }).length; }, 0);
+    var ready = cuisines.reduce(function (t, c) { return t + c.list.slice(0, 3).filter(function (x) { return !x.s.miss.length; }).length; }, 0);
     var shopIds = CL.shopGet().recipes.map(function (r) { return r.id; });
     results.innerHTML = '<p class="sub">' + cuisines.length + ' cuisines have a match' + (ready ? '; ' + ready + ' of the shown recipes you can make right now' : '') + '.</p>' +
       cuisines.map(function (cu) {
@@ -125,7 +126,9 @@
               '<span class="meta">' + esc(r.pl) + ' &middot; ' + r.tm + ' min &middot; ' + r.k + ' kcal</span>' +
               (m.length ? '<span class="miss">Missing ' + m.length + ': ' + esc(m.join(', ')) + '</span>' : '<span class="ok">You can make this now</span>') +
               '<button type="button" class="btn small" data-add="' + r.id + '"' + (inList ? ' disabled' : '') + '>' + (inList ? 'On shopping list' : 'Add to shopping list') + '</button></div>';
-          }).join('') + '</div></section>';
+          }).join('') + '</div>' +
+          (cu.total > 3 ? '<button type="button" class="btn small more" data-more="' + esc(cu.c) + '" aria-expanded="' + !!open[cu.c] + '">' +
+            (open[cu.c] ? 'Show top 3 only' : 'Show all ' + cu.total + ' ' + esc(cu.c) + ' matches') + '</button>' : '') + '</section>';
       }).join('');
   }
 
@@ -155,6 +158,8 @@
   $('veg').addEventListener('change', function (e) { opt.veg = e.target.checked; persist(); run(); });
   $('maxMiss').addEventListener('change', function (e) { opt.max = +e.target.value; persist(); run(); });
   results.addEventListener('click', function (e) {
+    var mo = e.target.closest('[data-more]');
+    if (mo) { var c = mo.dataset.more; open[c] = !open[c]; run(); return; }
     var b = e.target.closest('[data-add]');
     if (!b || b.disabled) return;
     var r = ING.r[b.dataset.add];
