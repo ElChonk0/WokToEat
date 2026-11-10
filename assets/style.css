@@ -1,10 +1,16 @@
 /* WokToEat: shared styles. Navy headers, ochre accents. */
+/* Palatino Linotype (Windows) has no caron vowels (ǎ ǐ ǒ ǔ ǚ), so pinyin third tones rendered as "Chaˇo".
+   This face covers only those code points and borrows them from a serif that has them. */
+@font-face { font-family: "Pinyin Serif"; font-weight: 400; unicode-range: U+01CD-01DC;
+  src: local("Cambria"), local("Times New Roman"), local("TimesNewRomanPSMT"), local("Noto Serif"), local("DejaVu Serif"); }
+@font-face { font-family: "Pinyin Serif"; font-weight: 700; unicode-range: U+01CD-01DC;
+  src: local("Cambria Bold"), local("Times New Roman Bold"), local("TimesNewRomanPS-BoldMT"), local("Noto Serif Bold"), local("DejaVu Serif Bold"); }
 :root {
   --paper: #F6F5F1; --surface: #FFFFFF; --ink: #1E2833; --muted: #5B6773; --line: #DEDFD8;
   --navy: #2E4057; --navy-ink: #FFFFFF; --ochre: #A2561C; --ochre-ink: #FFFFFF; --ochre-soft: #F4E6D8;
   --good: #2D7A4D; --warn: #9C6B0C; --bad: #B03A2E;
   --pr: #2A6C8E; --cb: #A3700E; --ft: #76509A;
-  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --serif: "Pinyin Serif", "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
   --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
   --radius: 10px; --wrap: 1120px;
 }
