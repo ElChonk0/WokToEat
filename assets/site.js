@@ -7,27 +7,72 @@
   function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) {} return null; }
 
   /* ---------------- random dish ---------------- */
-  // Pages reached through "Surprise me" carry ?surprise, which shows a "Surprise me again" button beside the title.
-  function surprise() {
-    var I = window.INDEX, here = (location.pathname.match(/([^\/]+)\.html$/) || [])[1], r;
-    do { r = I[Math.floor(Math.random() * I.length)]; } while (I.length > 1 && r.id === here);
-    location.href = ROOT + 'recipes/' + r.id + '.html?surprise';
+  // "Surprise me" picks a random recipe that uses every ingredient typed (all must appear in the title or ingredient
+  // list, like browse search) and optionally one main ingredient (p). The choice rides along in the URL
+  // (?surprise&q=...&p=...) so "Surprise me again" on the recipe page keeps it; the caret menu switches it.
+  function fold(s) {                                         // ignore case, pinyin tones and Vietnamese marks
+    s = String(s).toLowerCase().replace(/đ/g, 'd');
+    return s.normalize ? s.normalize('NFD').replace(/[̀-ͯ]/g, '') : s;
   }
-  var rnd = $('randomDish');
-  if (rnd && window.INDEX) rnd.addEventListener('click', surprise);
-  var again = $('surpriseAgain');
-  if (again && /[?&]surprise(&|=|$)/.test(location.search)) {
-    again.hidden = false;
-    again.addEventListener('click', function () {
-      if (window.INDEX) return surprise();
-      again.disabled = true;                          // recipe pages do not load the index until it is needed
-      var s = document.createElement('script');
-      s.src = ROOT + 'data/index.js';
-      s.onload = surprise;
-      s.onerror = function () { again.disabled = false; };
-      document.head.appendChild(s);
+  function words(q) { return fold(q || '').split(/[\s,+&\/]+/).filter(function (w) { return w && w !== 'and'; }); }
+  function withIndex(box, cb) {                              // recipe pages load the index only when it is needed
+    if (window.INDEX) return cb();
+    box.classList.add('busy');
+    var s = document.createElement('script');
+    s.src = ROOT + 'data/index.js';
+    s.onload = function () { box.classList.remove('busy'); cb(); };
+    s.onerror = function () { box.classList.remove('busy'); };
+    document.head.appendChild(s);
+  }
+  function describe(box, sel) {
+    var parts = [];
+    if (sel.p) { var b = box.querySelector('[data-sp="' + sel.p + '"]'); parts.push(b ? b.textContent : sel.p); }
+    if (sel.q && sel.q.trim()) parts.push(sel.q.trim());
+    return parts.join(' + ');
+  }
+  function surprise(box, sel) {
+    var note = box.querySelector('.sp-note');
+    withIndex(box, function () {
+      var t = words(sel.q), here = (location.pathname.match(/([^\/]+)\.html$/) || [])[1];
+      var pool = window.INDEX.filter(function (r) {
+        if (sel.p && r.p !== sel.p) return false;
+        for (var i = 0; i < t.length; i++) if (r.h.indexOf(t[i]) === -1) return false;
+        return true;
+      });
+      var pick = pool.filter(function (r) { return r.id !== here; });
+      if (!pick.length) {
+        note.textContent = pool.length ? 'This is the only recipe with ' + describe(box, sel) + '.' : 'No recipe uses ' + describe(box, sel) + '. Try fewer or different ingredients.';
+        return;
+      }
+      var r = pick[Math.floor(Math.random() * pick.length)];
+      var qs = '?surprise' + (t.length ? '&q=' + encodeURIComponent(sel.q.trim()) : '') + (sel.p ? '&p=' + encodeURIComponent(sel.p) : '');
+      location.href = ROOT + 'recipes/' + r.id + '.html' + qs;
     });
   }
+  var params = new URLSearchParams(location.search), current = { q: params.get('q') || '', p: params.get('p') || '' };
+  Array.prototype.forEach.call(document.querySelectorAll('.surprise'), function (box) {
+    var src = box.dataset.src, more = box.querySelector('.sp-more'), other = box.querySelector('.sp-other input');
+    var hero = src === 'hero' ? box.closest('form').querySelector('input[name="q"]') : null;
+    if (src === 'url') {
+      if (!params.has('surprise')) return;                  // only pages reached through Surprise me
+      box.hidden = false;
+      var d = describe(box, current);
+      if (d) box.querySelector('.sp-note').textContent = 'Surprising you with ' + d;
+      other.value = current.q;
+    }
+    function pickAgain(sel) { more.open = false; surprise(box, sel); }
+    box.querySelector('.sp-go').addEventListener('click', function () {
+      surprise(box, hero ? { q: hero.value, p: '' } : current);
+    });
+    Array.prototype.forEach.call(box.querySelectorAll('[data-sp]'), function (b) {
+      b.addEventListener('click', function () { pickAgain({ q: '', p: b.dataset.sp }); });
+    });
+    box.querySelector('.sp-other .btn').addEventListener('click', function () { pickAgain({ q: other.value, p: '' }); });
+    other.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); pickAgain({ q: other.value, p: '' }); } });
+    more.addEventListener('toggle', function () { if (more.open) other.focus(); });
+    document.addEventListener('click', function (e) { if (more.open && !more.contains(e.target)) more.open = false; });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && more.open) { more.open = false; more.querySelector('summary').focus(); } });
+  });
 
   /* ---------------- browse ---------------- */
   var root = $('browse-root');
@@ -64,10 +109,6 @@
       return '<a class="card" href="' + ROOT + 'recipes/' + r.id + '.html"><span class="c-title">' + esc(r.t) +
         (r.n ? ' <span class="native">' + esc(r.n) + '</span>' : '') + '</span><span class="c-meta">' + meta +
         '</span><span class="c-stats">' + stats + '</span></a>';
-    }
-    function fold(s) {                                         // ignore pinyin tones and Vietnamese marks
-      s = String(s).toLowerCase().replace(/đ/g, 'd');
-      return s.normalize ? s.normalize('NFD').replace(/[\u0300-\u036f]/g, '') : s;
     }
     function run() {
       var terms = fold(q.value).split(/\s+/).filter(Boolean);

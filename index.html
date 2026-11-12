@@ -6,7 +6,7 @@
 <title>WokToEat</title>
 <meta name="description" content="Weeknight Asian family cooking with calories and macros for every recipe, and a meal planner.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/style.css?v=ed413e5e3c">
+<link rel="stylesheet" href="assets/style.css?v=bedffd7036">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -20,7 +20,8 @@
 <p class="eyebrow">A weeknight guide to cooking across Asia</p>
 <h1>WokToEat</h1>
 <p class="lead">1185 family recipes from 20 regional cuisines, each with calories and macros per serving, plus a meal planner that builds a week of meals around your macro targets.</p>
-<form class="hero-search" action="browse.html" role="search"><input type="search" name="q" placeholder="Search dishes or ingredients" aria-label="Search recipes" autocomplete="off"><button class="btn primary" type="submit">Search</button></form>
+<form class="hero-search" action="browse.html" role="search"><input type="search" name="q" placeholder="Search dishes or ingredients" aria-label="Search recipes" autocomplete="off"><button class="btn primary" type="submit">Search</button><div class="surprise" data-src="hero"><button type="button" class="btn sp-go">Surprise me</button><details class="sp-more"><summary class="btn" aria-label="Surprise me with a different ingredient" title="Different ingredient">&#9662;</summary><div class="sp-menu"><p class="sp-h">Surprise me with</p><button type="button" data-sp="">Any ingredient</button><button type="button" data-sp="chicken">Chicken</button><button type="button" data-sp="duck">Duck</button><button type="button" data-sp="pork">Pork</button><button type="button" data-sp="beef">Beef</button><button type="button" data-sp="seafood">Seafood</button><button type="button" data-sp="tofu">Tofu &amp; Vegetarian</button><div class="sp-other"><input type="search" placeholder="Other, e.g. pork, mushroom" aria-label="Other ingredients"><button type="button" class="btn small">Go</button></div></div></details><p class="sp-note" aria-live="polite"></p></div></form>
+<p class="hint hero-hint">Type ingredients and press Surprise me for a random dish that uses them all, or leave it blank for anything.</p>
 <div class="stats"><div><b>1185</b>recipes</div><div><b>20</b>cuisines</div><div><b>6</b>main ingredients</div></div>
 </section>
 <section class="section"><h2>Start here</h2>
@@ -30,7 +31,6 @@
 <a class="tile big" href="shop.html"><b>Shopping list</b><p>Pick recipes and see what to buy, grouped by aisle and minus what you already have.</p></a>
 <a class="tile big" href="browse.html"><b>Browse every recipe</b><p>Search by dish or ingredient and filter by cuisine, meal, difficulty and time.</p></a>
 <a class="tile big" href="guides/02-pantry-ingredient-guide.html"><b>Pantry and techniques</b><p>The sauces, pastes and methods that recur across every cuisine.</p></a>
-<button type="button" class="tile big" id="randomDish" style="text-align:left;font:inherit;cursor:pointer"><b>Surprise me</b><p>Jump to a random recipe.</p></button>
 </div></section>
 <section class="section"><h2>By cuisine</h2><p class="sub">Up to ten well-known dishes for each main ingredient.</p><h3 class="group-h">China</h3><div class="tiles"><a class="tile" href="cuisine/cantonese.html"><b>Cantonese</b><span>145 recipes</span></a><a class="tile" href="cuisine/sichuan.html"><b>Sichuan</b><span>56 recipes</span></a><a class="tile" href="cuisine/hunan.html"><b>Hunan</b><span>53 recipes</span></a><a class="tile" href="cuisine/shanghainese-jiangnan.html"><b>Shanghainese / Jiangnan</b><span>53 recipes</span></a><a class="tile" href="cuisine/beijing.html"><b>Beijing</b><span>53 recipes</span></a><a class="tile" href="cuisine/shandong.html"><b>Shandong</b><span>52 recipes</span></a><a class="tile" href="cuisine/fujian.html"><b>Fujian</b><span>51 recipes</span></a><a class="tile" href="cuisine/hakka.html"><b>Hakka</b><span>12 recipes</span></a><a class="tile" href="cuisine/anhui.html"><b>Anhui</b><span>52 recipes</span></a><a class="tile" href="cuisine/yunnan.html"><b>Yunnan</b><span>50 recipes</span></a><a class="tile" href="cuisine/xinjiang.html"><b>Xinjiang</b><span>33 recipes</span></a></div><h3 class="group-h">East Asia</h3><div class="tiles"><a class="tile" href="cuisine/taiwan.html"><b>Taiwan</b><span>54 recipes</span></a><a class="tile" href="cuisine/japan.html"><b>Japan</b><span>71 recipes</span></a><a class="tile" href="cuisine/korea.html"><b>Korea</b><span>96 recipes</span></a></div><h3 class="group-h">Southeast Asia</h3><div class="tiles"><a class="tile" href="cuisine/thailand.html"><b>Thailand</b><span>58 recipes</span></a><a class="tile" href="cuisine/vietnam.html"><b>Vietnam</b><span>51 recipes</span></a><a class="tile" href="cuisine/indonesia.html"><b>Indonesia</b><span>56 recipes</span></a><a class="tile" href="cuisine/malaysia-singapore.html"><b>Malaysia / Singapore</b><span>83 recipes</span></a><a class="tile" href="cuisine/philippines.html"><b>Philippines</b><span>53 recipes</span></a></div><h3 class="group-h">South Asia</h3><div class="tiles"><a class="tile" href="cuisine/india.html"><b>India</b><span>53 recipes</span></a></div></section>
 <section class="section"><h2>By main ingredient</h2><div class="tiles"><a class="tile" href="type/chicken.html"><b>Chicken</b><span>227 recipes</span></a><a class="tile" href="type/duck.html"><b>Duck</b><span>8 recipes</span></a><a class="tile" href="type/pork.html"><b>Pork</b><span>240 recipes</span></a><a class="tile" href="type/beef.html"><b>Beef</b><span>211 recipes</span></a><a class="tile" href="type/seafood.html"><b>Seafood</b><span>273 recipes</span></a><a class="tile" href="type/tofu.html"><b>Tofu &amp; Vegetarian</b><span>226 recipes</span></a></div></section>
@@ -40,7 +40,7 @@
 <p>Recipes live as plain Markdown files, one per dish, and this site is generated from them.</p>
 </div></footer>
 <script>window.ROOT="";</script>
-<script src="data/index.js?v=ed413e5e3c"></script>
-<script src="assets/site.js?v=ed413e5e3c"></script>
+<script src="data/index.js?v=bedffd7036"></script>
+<script src="assets/site.js?v=bedffd7036"></script>
 </body>
 </html>
