@@ -324,3 +324,18 @@ a.tag:hover { border-color: var(--ochre); color: var(--ochre); }
 .sp-note:empty { display: none; }
 .title-row .sp-note { text-align: right; }
 @media (max-width: 600px) { .title-row .sp-note { text-align: left; } .sp-menu { right: auto; left: 0; } }
+
+/* "Watch it made": a click-to-load YouTube player (no request to YouTube until play is pressed) */
+.video { margin: 28px 0; }
+.yt { position: relative; aspect-ratio: 16 / 9; max-width: 760px; border-radius: 12px; overflow: hidden; background: #1c1a17; }
+.yt iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.yt-play { position: absolute; inset: 0; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px; padding: 20px; border: 0; cursor: pointer; font: inherit; color: #f4efe6; text-align: center;
+  background: radial-gradient(circle at 50% 45%, #3a332b, #1c1a17 70%); }
+.yt-icon { width: 68px; height: 48px; border-radius: 14px; background: #d4331f; position: relative; transition: transform .15s; }
+.yt-icon::after { content: ""; position: absolute; left: 27px; top: 14px; border-style: solid; border-width: 10px 0 10px 17px; border-color: transparent transparent transparent #fff; }
+.yt-play:hover .yt-icon, .yt-play:focus-visible .yt-icon { transform: scale(1.08); }
+.yt-t { font-weight: 700; font-size: 17px; max-width: 46ch; line-height: 1.3; }
+.yt-c { font-size: 13px; opacity: .75; }
+.video .per { margin-top: 8px; max-width: 760px; }
+@media print { .video { display: none !important; } }

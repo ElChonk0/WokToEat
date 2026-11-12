@@ -1,4 +1,4 @@
-/* Shared behaviour: recipe browser, ingredient scaling / unit toggle, random dish. No dependencies. */
+/* Shared behaviour: recipe browser, ingredient scaling / unit toggle, random dish, click-to-load video. No dependencies. */
 (function () {
   'use strict';
   var ROOT = window.ROOT || '';
@@ -240,4 +240,18 @@
     if (pr) pr.addEventListener('click', function () { window.print(); });
     render();
   }
+
+  /* ---------------- video: nothing loads from YouTube until play is pressed; it then autoplays muted ---------------- */
+  Array.prototype.forEach.call(document.querySelectorAll('.yt'), function (box) {
+    box.querySelector('.yt-play').addEventListener('click', function () {
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(box.dataset.yt) + '?autoplay=1&mute=1&rel=0';
+      f.title = this.querySelector('.yt-t').textContent;
+      f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      f.allowFullscreen = true;
+      f.referrerPolicy = 'strict-origin-when-cross-origin';
+      box.innerHTML = '';
+      box.appendChild(f);
+    });
+  });
 })();
